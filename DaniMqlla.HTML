@@ -1,373 +1,69 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DaniMaquilla - Maquillaje profesional para novias, eventos sociales y editoriales. Realza tu belleza natural.">
-    <title>DaniMaquilla | Maquillaje Profesional</title>
-    
-    <!-- Fuentes Elegantes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Iconos -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        gold: {
-                            light: '#F3E5AB',
-                            DEFAULT: '#D4AF37',
-                            dark: '#B5952F'
-                        },
-                        rose: {
-                            50: '#fdf2f8',
-                            100: '#fce7f3',
-                            300: '#f9a8d4',
-                            500: '#ec4899',
-                            600: '#db2777',
-                            900: '#831843'
-                        },
-                        dark: {
-                            bg: '#121212',
-                            card: '#1E1E1E',
-                            border: '#2A2A2A'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Lato', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif']
-                    },
-                    borderRadius: {
-                        'premium': '12px'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .glass-nav {
-            background: rgba(253, 242, 248, 0.85); /* rose-50 transparent */
-            backdrop-filter: blur(12px);
-        }
-        html.dark .glass-nav {
-            background: rgba(18, 18, 18, 0.85); /* dark-bg transparent */
-            border-bottom-color: #2A2A2A;
-        }
-        .hero-bg {
-            background: linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.3)), url('https://images.unsplash.com/photo-1512496115851-a408e8cece92?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
-        }
-    </style>
-    
-    <script>
-        // Inicializar modo oscuro basado en preferencia
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaStock | Portal de Proveedores</title>
+<style>
+:root{--navy:#17365d;--blue:#2878b9;--sky:#e9f3fb;--ink:#243447;--muted:#66788a;--line:#d8e3ed;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f3f7fb;color:var(--ink)}
+header{background:linear-gradient(120deg,#17365d,#2878b9);color:white;padding:28px max(22px,calc((100% - 1160px)/2));}
+.brand{font-size:13px;letter-spacing:2px;text-transform:uppercase;opacity:.85}h1{margin:8px 0 6px;font-size:clamp(26px,4vw,38px)}header p{margin:0;color:#e4f2ff}
+main{max-width:1160px;margin:26px auto;padding:0 18px}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:20px}
+.card{background:white;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 4px 14px #17365d0a}.metric{font-size:28px;font-weight:700;color:var(--navy)}.label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-top:4px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}.toolbar input{flex:1;min-width:220px;padding:12px 14px;border:1px solid #cbd8e5;border-radius:9px;font-size:14px}.btn{border:0;background:var(--blue);color:white;padding:11px 15px;border-radius:9px;font-weight:600;cursor:pointer}.btn.secondary{background:#e5eff8;color:var(--navy)}.btn:hover{filter:brightness(.96)}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:white}table{border-collapse:collapse;width:100%;min-width:850px}th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #e8eef4;font-size:13px}th{background:#eaf3fb;color:var(--navy);font-size:12px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0}tr:hover td{background:#f8fbfe}.id{font-weight:700;color:var(--blue)}.foot{font-size:12px;color:var(--muted);margin:14px 2px}.notice{background:#fff8e7;border:1px solid #f0d99a;border-radius:10px;padding:12px 14px;color:#715b24;font-size:13px;margin-top:16px}
+@media(max-width:650px){.summary{grid-template-columns:1fr}.metric{font-size:24px}}
+</style>
 </head>
-<body class="bg-rose-50 dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans antialiased selection:bg-gold selection:text-white transition-colors duration-300">
-
-    <!-- Navegación -->
-    <header class="fixed w-full z-50 glass-nav border-b border-rose-100 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-                    <i data-lucide="sparkles" class="text-gold w-6 h-6"></i>
-                    <span class="font-serif font-bold text-2xl text-gray-900 dark:text-white tracking-tight">Dani<span class="text-gold">Maquilla</span></span>
-                </div>
-                
-                <!-- Enlaces -->
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#servicios" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors">Servicios</a>
-                    <a href="#portafolio" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors">Portafolio</a>
-                    <a href="#reseñas" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors">Reseñas</a>
-                    
-                    <div class="flex items-center gap-4 border-l pl-6 border-rose-200 dark:border-dark-border">
-                        <!-- Botón Modo Oscuro -->
-                        <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-rose-100 dark:hover:bg-dark-card focus:outline-none rounded-full p-2 transition-colors">
-                            <i data-lucide="moon" id="theme-toggle-dark-icon" class="hidden w-5 h-5"></i>
-                            <i data-lucide="sun" id="theme-toggle-light-icon" class="hidden w-5 h-5"></i>
-                        </button>
-                        <a href="#contacto" class="px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold rounded-full transition-colors shadow-md">
-                            Agendar Cita
-                        </a>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 hero-bg h-screen flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
-            <span class="text-gold font-bold tracking-widest uppercase text-sm mb-4 block">Glamour & Belleza Profesional</span>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white max-w-2xl leading-tight">
-                Realza Tu Belleza <br> Natural
-            </h1>
-            <p class="mt-6 text-base sm:text-lg text-gray-300 max-w-xl font-light">
-                Servicios exclusivos de maquillaje para tus momentos más especiales. Bodas, eventos sociales y clases personalizadas con productos de alta gama.
-            </p>
-            <div class="mt-10 sm:flex gap-4">
-                <a href="#servicios" class="w-full sm:w-auto flex items-center justify-center px-8 py-3 rounded-full text-gray-900 bg-gold hover:bg-gold-light font-bold transition-all shadow-lg hover:shadow-gold/20">
-                    <i data-lucide="book-open" class="mr-2 w-5 h-5"></i>
-                    Ver Catálogo
-                </a>
-                <a href="#contacto" class="mt-4 sm:mt-0 w-full sm:w-auto flex items-center justify-center px-8 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-gray-900 font-bold transition-all">
-                    <i data-lucide="calendar-heart" class="mr-2 w-5 h-5"></i>
-                    Reservar Fecha
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Catálogo de Servicios con Precios -->
-    <section id="servicios" class="py-24 bg-rose-50 dark:bg-dark-bg transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 dark:text-white mb-4">Catálogo de Servicios</h2>
-                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Selecciona el servicio ideal para ti. Todos los maquillajes incluyen preparación de piel con productos dermatológicos.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Tarjeta 1: Social -->
-                <div class="bg-white dark:bg-dark-card rounded-premium overflow-hidden shadow-lg border border-rose-100 dark:border-dark-border group flex flex-col">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&q=80&w=800" alt="Maquillaje Social" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-gray-900 dark:text-white">
-                            $150.000 COP
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-xl font-serif font-bold text-gray-900 dark:text-white mb-2">Maquillaje Social</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-1">Perfecto para invitadas, graduaciones y eventos de noche. Duración de 2 horas y sellado de alta fijación.</p>
-                        
-                        <div class="bg-rose-50 dark:bg-dark-bg p-4 rounded-lg mb-6 border border-rose-100 dark:border-gray-800">
-                            <span class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-2 block">Adicionales disponibles:</span>
-                            <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-300">
-                                <li class="flex justify-between items-center">
-                                    <span>Pestañas postizas (tira)</span>
-                                    <span class="font-semibold text-gold">+ $20.000</span>
-                                </li>
-                                <li class="flex justify-between items-center">
-                                    <span>Peinado básico (Ondas)</span>
-                                    <span class="font-semibold text-gold">+ $50.000</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <button class="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-lg font-medium transition-colors">Seleccionar</button>
-                    </div>
-                </div>
-
-                <!-- Tarjeta 2: Novias (Destacada) -->
-                <div class="bg-white dark:bg-dark-card rounded-premium overflow-hidden shadow-xl border-2 border-gold relative group flex flex-col transform md:-translate-y-4">
-                    <div class="absolute top-0 left-0 w-full bg-gold text-center py-1 text-xs font-bold text-gray-900 uppercase tracking-widest z-10">
-                        Paquete Estrella
-                    </div>
-                    <div class="h-64 overflow-hidden relative mt-6">
-                        <img src="https://images.unsplash.com/photo-1546804784-816ea72e12e1?auto=format&fit=crop&q=80&w=800" alt="Maquillaje Novias" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-gray-900 dark:text-white">
-                            $450.000 COP
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-xl font-serif font-bold text-gray-900 dark:text-white mb-2">Especial Novias</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-1">Diseñado para que luzcas radiante en tu gran día. Incluye pestañas premium y retoque para fotografías.</p>
-                        
-                        <div class="bg-gold/10 p-4 rounded-lg mb-6 border border-gold/30">
-                            <span class="text-xs font-bold text-gold-dark dark:text-gold uppercase tracking-wider mb-2 block">Personaliza tu paquete:</span>
-                            <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-300">
-                                <li class="flex justify-between items-center">
-                                    <span>Prueba de Maquillaje (Previa)</span>
-                                    <span class="font-semibold text-gold">+ $150.000</span>
-                                </li>
-                                <li class="flex justify-between items-center">
-                                    <span>Maquillaje Mamá/Madrina</span>
-                                    <span class="font-semibold text-gold">+ $120.000</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <button class="w-full py-3 bg-gold hover:bg-gold-dark text-gray-900 font-bold rounded-lg transition-colors">Reservar Paquete</button>
-                    </div>
-                </div>
-
-                <!-- Tarjeta 3: Automaquillaje -->
-                <div class="bg-white dark:bg-dark-card rounded-premium overflow-hidden shadow-lg border border-rose-100 dark:border-dark-border group flex flex-col">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1516975080661-46bfa20224b1?auto=format&fit=crop&q=80&w=800" alt="Clase de Automaquillaje" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-gray-900 dark:text-white">
-                            $200.000 COP
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-xl font-serif font-bold text-gray-900 dark:text-white mb-2">Clase Automaquillaje</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-1">Aprende a sacarte partido según tus facciones. Clase personalizada de 3 horas. Incluye guía en PDF.</p>
-                        
-                        <div class="bg-rose-50 dark:bg-dark-bg p-4 rounded-lg mb-6 border border-rose-100 dark:border-gray-800">
-                            <span class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-2 block">Opciones adicionales:</span>
-                            <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-300">
-                                <li class="flex justify-between items-center">
-                                    <span>Revisión de tu cosmetiquera</span>
-                                    <span class="font-semibold text-green-500">¡Gratis!</span>
-                                </li>
-                                <li class="flex justify-between items-center">
-                                    <span>Clase Dúo (Trae a una amiga)</span>
-                                    <span class="font-semibold text-gold">+ $100.000</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <button class="w-full py-3 border border-rose-600 text-rose-600 dark:border-rose-500 dark:text-rose-500 hover:bg-rose-600 hover:text-white rounded-lg font-medium transition-colors">Ver Detalles</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Reseñas / Testimonios -->
-    <section id="reseñas" class="py-20 bg-white dark:bg-dark-card border-y border-rose-100 dark:border-dark-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-serif font-bold text-center text-gray-900 dark:text-white mb-12">Lo que dicen mis clientas</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonio 1 -->
-                <div class="p-6 bg-rose-50 dark:bg-dark-bg rounded-2xl relative">
-                    <i data-lucide="quote" class="absolute top-4 right-6 w-8 h-8 text-gold/20"></i>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-rose-200 rounded-full flex justify-center items-center font-bold text-rose-700">LV</div>
-                        <div>
-                            <h4 class="font-bold text-gray-900 dark:text-white">Laura Vargas</h4>
-                            <div class="flex text-gold w-4 h-4">
-                                <i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm italic">"Dani me maquilló para mi boda y no pude quedar más feliz. El maquillaje me duró intacto toda la noche a pesar del calor y las lágrimas. ¡Súper recomendada!"</p>
-                </div>
-
-                <!-- Testimonio 2 -->
-                <div class="p-6 bg-rose-50 dark:bg-dark-bg rounded-2xl relative">
-                    <i data-lucide="quote" class="absolute top-4 right-6 w-8 h-8 text-gold/20"></i>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-gold/30 rounded-full flex justify-center items-center font-bold text-gold-dark">CM</div>
-                        <div>
-                            <h4 class="font-bold text-gray-900 dark:text-white">Carolina Mejía</h4>
-                            <div class="flex text-gold w-4 h-4">
-                                <i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm italic">"Tomé la clase de automaquillaje y fue la mejor inversión. Dani tiene muchísima paciencia y te explica qué colores le favorecen a tu tono de piel."</p>
-                </div>
-
-                <!-- Testimonio 3 -->
-                <div class="p-6 bg-rose-50 dark:bg-dark-bg rounded-2xl relative">
-                    <i data-lucide="quote" class="absolute top-4 right-6 w-8 h-8 text-gold/20"></i>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-rose-200 rounded-full flex justify-center items-center font-bold text-rose-700">SR</div>
-                        <div>
-                            <h4 class="font-bold text-gray-900 dark:text-white">Sofía Ramírez</h4>
-                            <div class="flex text-gold w-4 h-4">
-                                <i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm italic">"Excelente servicio. Me hice el maquillaje social con adición de pestañas y ondas, quedé lista para mi grado en un solo lugar. Muy profesional."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contacto" class="bg-gray-900 text-white pt-16 pb-8 border-t-4 border-gold">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 mb-6">
-                        <i data-lucide="sparkles" class="w-6 h-6 text-gold"></i>
-                        <span class="font-serif font-bold text-2xl tracking-tight">Dani<span class="text-gold">Maquilla</span></span>
-                    </div>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        Especialista en resaltar la belleza única de cada mujer. Utilizando técnicas modernas y productos de la más alta calidad para garantizar acabados perfectos y duraderos.
-                    </p>
-                </div>
-                
-                <div>
-                    <h4 class="font-serif font-bold mb-6 text-gold">Contacto Directo</h4>
-                    <ul class="space-y-4 text-sm text-gray-300">
-                        <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-5 h-5 text-rose-400"></i> Estudio en Barranquilla, COL</li>
-                        <li class="flex items-center gap-3"><i data-lucide="smartphone" class="w-5 h-5 text-rose-400"></i> +57 300 123 4567</li>
-                        <li class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-rose-400"></i> hola@danimaquilla.com</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-serif font-bold mb-6 text-gold">Sígueme</h4>
-                    <p class="text-sm text-gray-400 mb-4">Mira más de mi portafolio y tips diarios en mis redes:</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-rose-600 transition-colors">
-                            <i data-lucide="instagram" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-rose-600 transition-colors">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-rose-600 transition-colors">
-                            <i data-lucide="facebook" class="w-5 h-5"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-                <p>&copy; 2026 DaniMaquilla. Todos los derechos reservados.</p>
-                <div class="flex space-x-4 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-gold transition-colors">Términos de Servicio</a>
-                    <a href="#" class="hover:text-gold transition-colors">Política de Cancelación</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Inicializar iconos de Lucide
-        lucide.createIcons();
-
-        // Lógica del modo oscuro
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-        // Mostrar el icono correcto al cargar
-        if (document.documentElement.classList.contains('dark')) {
-            lightIcon.classList.remove('hidden');
-        } else {
-            darkIcon.classList.remove('hidden');
-        }
-
-        // Listener del botón para cambiar tema
-        themeToggleBtn.addEventListener('click', function() {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
-
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-        });
-    </script>
+<body>
+<header>
+  <div class="brand">NovaStock · Gestión comercial</div>
+  <h1>Portal de proveedores</h1>
+  <p>Directorio de proveedores para la tienda virtual de accesorios</p>
+</header>
+<main>
+  <section class="summary">
+    <div class="card"><div class="metric" id="total">73</div><div class="label">Proveedores registrados</div></div>
+    <div class="card"><div class="metric">5</div><div class="label">Campos de información</div></div>
+    <div class="card"><div class="metric">2026</div><div class="label">Directorio académico simulado</div></div>
+  </section>
+  <div class="card">
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Buscar por código, proveedor, contacto, teléfono o correo…" aria-label="Buscar proveedores">
+      <button class="btn secondary" onclick="clearSearch()">Limpiar búsqueda</button>
+      <button class="btn" onclick="downloadCSV()">Descargar CSV para Access</button>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>id_proveedor</th><th>nombre_proveedor</th><th>contacto</th><th>telefono</th><th>email</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="foot" id="count">Mostrando 73 proveedores</div>
+  </div>
+  <div class="notice"><strong>Nota académica:</strong> los nombres, contactos, teléfonos y correos son datos ficticios creados para practicar importación de datos. No corresponden a un directorio verificado.</div>
+</main>
+<script>
+const providers = [{"id_proveedor": 1, "nombre_proveedor": "Suministros Nova Ramírez", "contacto": "Laura Ramírez", "telefono": "+57 607 7888702", "email": "laura.ramirez@proveedoresnorte.co"}, {"id_proveedor": 2, "nombre_proveedor": "Distribuciones Andina Vargas", "contacto": "Andrés Vargas", "telefono": "+57 601 4830966", "email": "andres.vargas@suministrosnova.co"}, {"id_proveedor": 3, "nombre_proveedor": "Comercializadora Express Moreno", "contacto": "Camila Moreno", "telefono": "+57 601 4628190", "email": "camila.moreno@comercialcaribe.co"}, {"id_proveedor": 4, "nombre_proveedor": "Soluciones Atlántico Silva", "contacto": "Santiago Silva", "telefono": "+57 601 8627805", "email": "santiago.silva@redabastece.co"}, {"id_proveedor": 5, "nombre_proveedor": "Importadora Oriente Álvarez", "contacto": "Valentina Álvarez", "telefono": "+57 605 8921394", "email": "valentina.alvarez@logisticacentral.co"}, {"id_proveedor": 6, "nombre_proveedor": "Tecnología Premium Herrera", "contacto": "Daniel Herrera", "telefono": "+57 601 9764436", "email": "daniel.herrera@insumosdigitales.co"}, {"id_proveedor": 7, "nombre_proveedor": "Abastecimientos Selecta Suárez", "contacto": "Mariana Suárez", "telefono": "+57 604 9077121", "email": "mariana.suarez@proveedoresexpress.co"}, {"id_proveedor": 8, "nombre_proveedor": "Grupo Universal Pineda", "contacto": "Felipe Pineda", "telefono": "+57 605 6702544", "email": "felipe.pineda@proveedoresnorte.co"}, {"id_proveedor": 9, "nombre_proveedor": "Servicios Élite Cárdenas", "contacto": "Natalia Cárdenas", "telefono": "+57 607 9048427", "email": "natalia.cardenas@suministrosnova.co"}, {"id_proveedor": 10, "nombre_proveedor": "Corporación Digitales Acosta", "contacto": "Sebastián Acosta", "telefono": "+57 605 3236309", "email": "sebastian.acosta@comercialcaribe.co"}, {"id_proveedor": 11, "nombre_proveedor": "Insumos Nova Ospina", "contacto": "Gabriela Ospina", "telefono": "+57 601 7121407", "email": "gabriela.ospina@redabastece.co"}, {"id_proveedor": 12, "nombre_proveedor": "Logística Andina Rodríguez", "contacto": "Mateo Rodríguez", "telefono": "+57 607 8719794", "email": "mateo.rodriguez@logisticacentral.co"}, {"id_proveedor": 13, "nombre_proveedor": "Mayorista Express García", "contacto": "Isabella García", "telefono": "+57 604 7192281", "email": "isabella.garcia@insumosdigitales.co"}, {"id_proveedor": 14, "nombre_proveedor": "Proveedora Atlántico Sánchez", "contacto": "Juan Sánchez", "telefono": "+57 605 8764903", "email": "juan.sanchez@proveedoresexpress.co"}, {"id_proveedor": 15, "nombre_proveedor": "Suministros Oriente Díaz", "contacto": "Paula Díaz", "telefono": "+57 604 8128540", "email": "paula.diaz@proveedoresnorte.co"}, {"id_proveedor": 16, "nombre_proveedor": "Distribuciones Premium Rojas", "contacto": "Nicolás Rojas", "telefono": "+57 601 8714350", "email": "nicolas.rojas@suministrosnova.co"}, {"id_proveedor": 17, "nombre_proveedor": "Comercializadora Selecta Ortiz", "contacto": "Carolina Ortiz", "telefono": "+57 604 5561530", "email": "carolina.ortiz@comercialcaribe.co"}, {"id_proveedor": 18, "nombre_proveedor": "Soluciones Universal Romero", "contacto": "David Romero", "telefono": "+57 605 7547348", "email": "david.romero@redabastece.co"}, {"id_proveedor": 19, "nombre_proveedor": "Importadora Élite Ruiz", "contacto": "Lucía Ruiz", "telefono": "+57 604 8542831", "email": "lucia.ruiz@logisticacentral.co"}, {"id_proveedor": 20, "nombre_proveedor": "Tecnología Digitales Medina", "contacto": "Alejandro Medina", "telefono": "+57 605 4792887", "email": "alejandro.medina@insumosdigitales.co"}, {"id_proveedor": 21, "nombre_proveedor": "Abastecimientos Nova Aguilar", "contacto": "Sofía Aguilar", "telefono": "+57 604 5843148", "email": "sofia.aguilar@proveedoresexpress.co"}, {"id_proveedor": 22, "nombre_proveedor": "Grupo Andina Reyes", "contacto": "Miguel Reyes", "telefono": "+57 605 5606998", "email": "miguel.reyes@proveedoresnorte.co"}, {"id_proveedor": 23, "nombre_proveedor": "Servicios Express Salazar", "contacto": "Juliana Salazar", "telefono": "+57 605 5063428", "email": "juliana.salazar@suministrosnova.co"}, {"id_proveedor": 24, "nombre_proveedor": "Corporación Atlántico Molina", "contacto": "Samuel Molina", "telefono": "+57 601 9871531", "email": "samuel.molina@comercialcaribe.co"}, {"id_proveedor": 25, "nombre_proveedor": "Insumos Oriente Gómez", "contacto": "Diana Gómez", "telefono": "+57 607 5383548", "email": "diana.gomez@redabastece.co"}, {"id_proveedor": 26, "nombre_proveedor": "Logística Premium López", "contacto": "Esteban López", "telefono": "+57 604 7716574", "email": "esteban.lopez@logisticacentral.co"}, {"id_proveedor": 27, "nombre_proveedor": "Mayorista Selecta Pérez", "contacto": "Manuela Pérez", "telefono": "+57 604 4661583", "email": "manuela.perez@insumosdigitales.co"}, {"id_proveedor": 28, "nombre_proveedor": "Proveedora Universal Torres", "contacto": "Tomás Torres", "telefono": "+57 605 7834944", "email": "tomas.torres@proveedoresexpress.co"}, {"id_proveedor": 29, "nombre_proveedor": "Suministros Élite Castro", "contacto": "Claudia Castro", "telefono": "+57 607 9582336", "email": "claudia.castro@proveedoresnorte.co"}, {"id_proveedor": 30, "nombre_proveedor": "Distribuciones Digitales Muñoz", "contacto": "Martín Muñoz", "telefono": "+57 601 8476305", "email": "martin.muñoz@suministrosnova.co"}, {"id_proveedor": 31, "nombre_proveedor": "Comercializadora Nova Jiménez", "contacto": "Sara Jiménez", "telefono": "+57 601 5720073", "email": "sara.jimenez@comercialcaribe.co"}, {"id_proveedor": 32, "nombre_proveedor": "Soluciones Andina Mendoza", "contacto": "Jorge Mendoza", "telefono": "+57 607 4660320", "email": "jorge.mendoza@redabastece.co"}, {"id_proveedor": 33, "nombre_proveedor": "Importadora Express Navarro", "contacto": "Daniela Navarro", "telefono": "+57 601 6991577", "email": "daniela.navarro@logisticacentral.co"}, {"id_proveedor": 34, "nombre_proveedor": "Tecnología Atlántico Cortés", "contacto": "Ricardo Cortés", "telefono": "+57 604 7268460", "email": "ricardo.cortes@insumosdigitales.co"}, {"id_proveedor": 35, "nombre_proveedor": "Abastecimientos Oriente Fuentes", "contacto": "Elena Fuentes", "telefono": "+57 601 7463553", "email": "elena.fuentes@proveedoresexpress.co"}, {"id_proveedor": 36, "nombre_proveedor": "Grupo Premium Peña", "contacto": "Óscar Peña", "telefono": "+57 601 3709084", "email": "oscar.peña@proveedoresnorte.co"}, {"id_proveedor": 37, "nombre_proveedor": "Servicios Selecta Parra", "contacto": "Mónica Parra", "telefono": "+57 601 5189082", "email": "monica.parra@suministrosnova.co"}, {"id_proveedor": 38, "nombre_proveedor": "Corporación Universal León", "contacto": "Kevin León", "telefono": "+57 604 8401611", "email": "kevin.leon@comercialcaribe.co"}, {"id_proveedor": 39, "nombre_proveedor": "Insumos Élite Martínez", "contacto": "Adriana Martínez", "telefono": "+57 601 6282183", "email": "adriana.martinez@redabastece.co"}, {"id_proveedor": 40, "nombre_proveedor": "Logística Digitales Hernández", "contacto": "Iván Hernández", "telefono": "+57 601 9667030", "email": "ivan.hernandez@logisticacentral.co"}, {"id_proveedor": 41, "nombre_proveedor": "Mayorista Nova Ramírez", "contacto": "Tatiana Ramírez", "telefono": "+57 604 6385086", "email": "tatiana.ramirez@insumosdigitales.co"}, {"id_proveedor": 42, "nombre_proveedor": "Proveedora Andina Vargas", "contacto": "Carlos Vargas", "telefono": "+57 605 6933295", "email": "carlos.vargas@proveedoresexpress.co"}, {"id_proveedor": 43, "nombre_proveedor": "Suministros Express Moreno", "contacto": "Viviana Moreno", "telefono": "+57 604 9976188", "email": "viviana.moreno@proveedoresnorte.co"}, {"id_proveedor": 44, "nombre_proveedor": "Distribuciones Atlántico Silva", "contacto": "Luis Silva", "telefono": "+57 604 5101562", "email": "luis.silva@suministrosnova.co"}, {"id_proveedor": 45, "nombre_proveedor": "Comercializadora Oriente Álvarez", "contacto": "Andrea Álvarez", "telefono": "+57 601 9233631", "email": "andrea.alvarez@comercialcaribe.co"}, {"id_proveedor": 46, "nombre_proveedor": "Soluciones Premium Herrera", "contacto": "Fernando Herrera", "telefono": "+57 607 5863847", "email": "fernando.herrera@redabastece.co"}, {"id_proveedor": 47, "nombre_proveedor": "Importadora Selecta Suárez", "contacto": "Catalina Suárez", "telefono": "+57 601 6114857", "email": "catalina.suarez@logisticacentral.co"}, {"id_proveedor": 48, "nombre_proveedor": "Tecnología Universal Pineda", "contacto": "Pedro Pineda", "telefono": "+57 605 3484518", "email": "pedro.pineda@insumosdigitales.co"}, {"id_proveedor": 49, "nombre_proveedor": "Abastecimientos Élite Cárdenas", "contacto": "Melissa Cárdenas", "telefono": "+57 607 8897121", "email": "melissa.cardenas@proveedoresexpress.co"}, {"id_proveedor": 50, "nombre_proveedor": "Grupo Digitales Acosta", "contacto": "Emilio Acosta", "telefono": "+57 604 6680631", "email": "emilio.acosta@proveedoresnorte.co"}, {"id_proveedor": 51, "nombre_proveedor": "Servicios Nova Ospina", "contacto": "Lina Ospina", "telefono": "+57 607 9600276", "email": "lina.ospina@suministrosnova.co"}, {"id_proveedor": 52, "nombre_proveedor": "Corporación Andina Rodríguez", "contacto": "Héctor Rodríguez", "telefono": "+57 605 3314355", "email": "hector.rodriguez@comercialcaribe.co"}, {"id_proveedor": 53, "nombre_proveedor": "Insumos Express García", "contacto": "Angélica García", "telefono": "+57 605 5751303", "email": "angelica.garcia@redabastece.co"}, {"id_proveedor": 54, "nombre_proveedor": "Logística Atlántico Sánchez", "contacto": "Mauricio Sánchez", "telefono": "+57 607 9805896", "email": "mauricio.sanchez@logisticacentral.co"}, {"id_proveedor": 55, "nombre_proveedor": "Mayorista Oriente Díaz", "contacto": "Gloria Díaz", "telefono": "+57 607 7519954", "email": "gloria.diaz@insumosdigitales.co"}, {"id_proveedor": 56, "nombre_proveedor": "Proveedora Premium Rojas", "contacto": "Felipe Rojas", "telefono": "+57 607 7834964", "email": "felipe.rojas@proveedoresexpress.co"}, {"id_proveedor": 57, "nombre_proveedor": "Suministros Selecta Ortiz", "contacto": "Natalia Ortiz", "telefono": "+57 607 6323309", "email": "natalia.ortiz@proveedoresnorte.co"}, {"id_proveedor": 58, "nombre_proveedor": "Distribuciones Universal Romero", "contacto": "César Romero", "telefono": "+57 601 5363232", "email": "cesar.romero@suministrosnova.co"}, {"id_proveedor": 59, "nombre_proveedor": "Comercializadora Élite Ruiz", "contacto": "Lorena Ruiz", "telefono": "+57 604 6120068", "email": "lorena.ruiz@comercialcaribe.co"}, {"id_proveedor": 60, "nombre_proveedor": "Soluciones Digitales Medina", "contacto": "Julián Medina", "telefono": "+57 604 4222921", "email": "julian.medina@redabastece.co"}, {"id_proveedor": 61, "nombre_proveedor": "Importadora Nova Aguilar", "contacto": "Verónica Aguilar", "telefono": "+57 604 9246455", "email": "veronica.aguilar@logisticacentral.co"}, {"id_proveedor": 62, "nombre_proveedor": "Tecnología Andina Reyes", "contacto": "Raúl Reyes", "telefono": "+57 605 9697607", "email": "raul.reyes@insumosdigitales.co"}, {"id_proveedor": 63, "nombre_proveedor": "Abastecimientos Express Salazar", "contacto": "María Salazar", "telefono": "+57 605 5200617", "email": "maria.salazar@proveedoresexpress.co"}, {"id_proveedor": 64, "nombre_proveedor": "Grupo Atlántico Molina", "contacto": "Camilo Molina", "telefono": "+57 605 8805773", "email": "camilo.molina@proveedoresnorte.co"}, {"id_proveedor": 65, "nombre_proveedor": "Servicios Oriente Gómez", "contacto": "Pilar Gómez", "telefono": "+57 607 6357300", "email": "pilar.gomez@suministrosnova.co"}, {"id_proveedor": 66, "nombre_proveedor": "Corporación Premium López", "contacto": "Álvaro López", "telefono": "+57 607 5442305", "email": "alvaro.lopez@comercialcaribe.co"}, {"id_proveedor": 67, "nombre_proveedor": "Insumos Selecta Pérez", "contacto": "Yulieth Pérez", "telefono": "+57 604 6780490", "email": "yulieth.perez@redabastece.co"}, {"id_proveedor": 68, "nombre_proveedor": "Logística Universal Torres", "contacto": "Roberto Torres", "telefono": "+57 607 8685129", "email": "roberto.torres@logisticacentral.co"}, {"id_proveedor": 69, "nombre_proveedor": "Mayorista Élite Castro", "contacto": "Marisol Castro", "telefono": "+57 604 5672414", "email": "marisol.castro@insumosdigitales.co"}, {"id_proveedor": 70, "nombre_proveedor": "Proveedora Digitales Muñoz", "contacto": "Fabián Muñoz", "telefono": "+57 605 6331450", "email": "fabian.muñoz@proveedoresexpress.co"}, {"id_proveedor": 71, "nombre_proveedor": "Suministros Nova Jiménez", "contacto": "Diana Jiménez", "telefono": "+57 605 7038104", "email": "diana.jimenez@proveedoresnorte.co"}, {"id_proveedor": 72, "nombre_proveedor": "Distribuciones Andina Mendoza", "contacto": "Jaime Mendoza", "telefono": "+57 607 9650865", "email": "jaime.mendoza@suministrosnova.co"}, {"id_proveedor": 73, "nombre_proveedor": "Comercializadora Express Navarro", "contacto": "Olga Navarro", "telefono": "+57 605 4413238", "email": "olga.navarro@comercialcaribe.co"}];
+const tbody=document.getElementById('rows');
+function render(list){
+ tbody.innerHTML=list.map(p=>`<tr><td class="id">${p.id_proveedor}</td><td>${escapeHTML(p.nombre_proveedor)}</td><td>${escapeHTML(p.contacto)}</td><td>${escapeHTML(p.telefono)}</td><td>${escapeHTML(p.email)}</td></tr>`).join('');
+ document.getElementById('count').textContent=`Mostrando ${list.length} de ${providers.length} proveedores`;
+}
+function escapeHTML(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+document.getElementById('search').addEventListener('input',e=>{
+ const q=e.target.value.toLowerCase().trim();
+ render(providers.filter(p=>Object.values(p).some(v=>String(v).toLowerCase().includes(q))));
+});
+function clearSearch(){document.getElementById('search').value='';render(providers);}
+function downloadCSV(){
+ const keys=['id_proveedor','nombre_proveedor','contacto','telefono','email'];
+ const csv=[keys.join(','),...providers.map(p=>keys.map(k=>'"'+String(p[k]).replace(/"/g,'""')+'"').join(','))].join('\r\n');
+ const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Proveedores_Inventados_73.csv';a.click();URL.revokeObjectURL(a.href);
+}
+render(providers);
+</script>
 </body>
 </html>
